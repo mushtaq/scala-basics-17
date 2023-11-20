@@ -1,15 +1,15 @@
 
 def map(xs: List[Int], f: Int => Int): List[Int] = {
   val it = xs.iterator
-  var result: List[Int] = List()
+  var stack: List[Int] = List()
 
   while (it.hasNext) {
     val x = it.next()
     val y = f(x)
-    result = y :: result
+    stack = y :: stack
   }
 
-  result
+  stack.reverse
 }
 
 
