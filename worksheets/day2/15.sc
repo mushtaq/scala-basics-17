@@ -14,5 +14,10 @@ p.hashCode()
 p2.hashCode()
 
 p
-p.copy(age = 38)
+val p3 = p.copy(age = 38)
 p
+
+p.hashCode()
+p3.hashCode()
+
+p == p3
