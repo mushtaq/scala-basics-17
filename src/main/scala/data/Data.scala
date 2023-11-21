@@ -13,7 +13,7 @@ object Person {}
 
 object Data {
 
-  val books = List(
+  val books: List[Book] = List(
     Book("odersky", "scala prog", 100),
     Book("odersky", "apple", 100),
     Book("odersky", "complexity", 400),
