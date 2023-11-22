@@ -1,12 +1,12 @@
 
-trait Day
+sealed trait Day
 
 object Day {
   case object Weekday extends Day
   case object Weekend extends Day
 }
 
-trait Customer
+sealed trait Customer
 
 object Customer {
   case object Regular extends Customer
@@ -16,10 +16,12 @@ object Customer {
 case class Category(customer: Customer, day: Day)
 
 case class BookingRequest(customer: Customer, days: List[Day]) {
-  def categories: List[Category] = ???
+  def categories: List[Category] = days.map(d => Category(customer, d))
 }
 
-case class Hotel(name: String, rating: Int, rates: Map[Category, Int])
+case class Hotel(name: String, rating: Int, rates: Map[Category, Int]) {
+  def priceOf(category: Category): Int = rates(category)
+}
 
 object Data {
   val hotels = List(
@@ -46,7 +48,9 @@ object Data {
 
 class ReservationService(hotels: List[Hotel]) {
   def find(bookingRequest: BookingRequest): Hotel = {
-    ???
+    hotels.minBy { hotel =>
+      (bookingRequest.categories.map(hotel.priceOf).sum, -hotel.rating)
+    }
   }
 }
 
