@@ -58,3 +58,6 @@ val reservationService = new ReservationService(Data.hotels)
 reservationService.find(BookingRequest(Customer.Regular, List(Day.Weekday, Day.Weekday, Day.Weekday)))
 reservationService.find(BookingRequest(Customer.Regular, List(Day.Weekday, Day.Weekend, Day.Weekend)))
 reservationService.find(BookingRequest(Customer.Rewards, List(Day.Weekday, Day.Weekday, Day.Weekend)))
+
+val rates = Data.hotels.head.rates
+rates(Category(Customer.Regular, Day.Weekday))
