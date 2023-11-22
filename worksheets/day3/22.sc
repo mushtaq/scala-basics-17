@@ -9,14 +9,17 @@ object Day {
 trait Customer
 
 object Customer {
-  object Regular extends Customer
-  object Rewards extends Customer
+  case object Regular extends Customer
+  case object Rewards extends Customer
 }
 
 case class Category(customer: Customer, day: Day)
 
-case class Hotel(name: String, rating: Int, rates: Map[Category, Int])
+case class BookingRequest(customer: Customer, days: List[Day]) {
+  def categories: List[Category] = ???
+}
 
+case class Hotel(name: String, rating: Int, rates: Map[Category, Int])
 
 object Data {
   val hotels = List(
@@ -40,3 +43,14 @@ object Data {
     )),
   )
 }
+
+class ReservationService(hotels: List[Hotel]) {
+  def find(bookingRequest: BookingRequest): Hotel = {
+    ???
+  }
+}
+
+val reservationService = new ReservationService(Data.hotels)
+reservationService.find(BookingRequest(Customer.Regular, List(Day.Weekday, Day.Weekday, Day.Weekday)))
+reservationService.find(BookingRequest(Customer.Regular, List(Day.Weekday, Day.Weekend, Day.Weekend)))
+reservationService.find(BookingRequest(Customer.Rewards, List(Day.Weekday, Day.Weekday, Day.Weekend)))
