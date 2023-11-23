@@ -24,6 +24,15 @@ def add2(x: Option[Int], y: Option[Int]): Option[Int] = {
   }
 }
 
+def add2(x: Option[Int], y: Option[Int]): Option[Int] = {
+  (x, y) match {
+    case (gg: None.type, _) => y
+    case (_, None) => x
+//    case (None, gg: None.type ) => None
+    case (Some(m), gg: Some[Int]) => Some(m + gg.value)
+  }
+}
+
 //add(a, b)
 
 //val f: Option[Int] = None
