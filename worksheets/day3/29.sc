@@ -3,11 +3,6 @@ import data.Data
 
 def transform(json: JsValue): JsValue = {
   // number -> square it
-  // null -> make it string "I am null"
-  // boolean -> flip it
-  // string -> make it "Hello $string"
-  // string but starts with urn: -> make it "string"
-  // if the key is m or n -> keep it as is
   if(json.isInstanceOf[JsNumber]) {
     val x = json.asInstanceOf[JsNumber].value
     JsNumber(x * x)
@@ -20,6 +15,13 @@ def transform(json: JsValue): JsValue = {
   } else {
     json
   }
+
+
+  // null -> make it string "I am null"
+  // boolean -> flip it
+  // string -> make it "Hello $string"
+  // string but starts with urn: -> make it "string"
+  // if the key is m or n -> keep it as is
 }
 
 
