@@ -10,4 +10,7 @@ Sorter.sort(List(3, 10, 32, 2, 8, 12))(Ord.intDesOrd)
 Sorter.sort(List("z", "abc", "a", "ss"))(Ord.strOrd)
 Sorter.sort(List(Some("z"), Some("abc"), None))(Ord.optStrOrd)
 
+
+Sorter.sort(List((3, "abc"), (1, "xyz"), (3, "mno")))(Ord.pairOrd)
+
 Sorter.sort(data.Data.books)(Book.bookOrd).foreach(println)

@@ -16,4 +16,20 @@ object Ord {
   val strOrd: Ord[String] = new Ord[String] {
     override def compare(a: String, b: String): Boolean = a <= b
   }
+
+  val optIntOrd: Ord[Option[Int]] = new Ord[Option[Int]] {
+    override def compare(a: Option[Int], b: Option[Int]): Boolean = (a, b) match {
+      case (Some(x), Some(y)) => x <= y
+      case (None, _)          => true
+      case (_, None)          => false
+    }
+  }
+
+  val optStrOrd: Ord[Option[String]] = new Ord[Option[String]] {
+    override def compare(a: Option[String], b: Option[String]): Boolean = (a, b) match {
+      case (Some(x), Some(y)) => x <= y
+      case (None, _)          => true
+      case (_, None)          => false
+    }
+  }
 }
