@@ -25,4 +25,9 @@ object Ord {
     }
   }
 
+  def pairOrd[T1, T2](t1Ord: Ord[T1], t2Ord: Ord[T2]): Ord[(T1, T2)] = new Ord[(T1, T2)] {
+    override def compare(a: (T1, T2), b: (T1, T2)): Boolean =
+      if(a._1 == b._1) t2Ord.compare(a._2, b._2) else t1Ord.compare(a._1, b._1)
+  }
+
 }
